@@ -11,52 +11,59 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Color.teal.opacity(0.6)
-                .ignoresSafeArea() // Extend the color to fill the entire screen
+                .ignoresSafeArea()
 
             VStack(alignment: .center) {
                 // Top-left home icon
                 HStack {
-                    Image(systemName: "house.fill")
-                        .font(.title)
-                        .padding()
-                    Spacer()
+                    Button(action: {
+                        
+                    }) {
+                        Image(systemName: "house.fill")
+                            .font(.title)
+                            .padding()
+                        Spacer()
+                    }
                 }
 
-                Spacer().frame(height: 10)
+                Spacer().frame(height: 30)
 
                 // Title
-                Text("Get Your Reward!")
-                    .font(.title2)
+                Text("Timer Complete!")
+                    .font(.largeTitle)
                     .fontWeight(.bold)
-                    .foregroundColor(.white) // Optional: to make it visible on teal
-                    .padding(.bottom, 20)
+                    .foregroundColor(.white)
+                    .padding(.bottom, 10)
+                
+                Text("Choose Your Prize :)")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                    .foregroundColor(.white)
+                    .padding(.bottom, 40)
 
                 // Blue reward box
-                VStack(spacing: 16) {
-                    Text("Timer Complete!")
-                        .font(.headline)
-                        .fontWeight(.bold)
-
-                    Text("Choose your prize")
-                        .font(.subheadline)
-
+                VStack() {
                     // Grid of boxes
-                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 20) {
+                    LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 70) {
                         ForEach(0..<4) { _ in
-                            Image(systemName: "shippingbox.fill")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 80, height: 80)
-                                .foregroundColor(.brown)
+                            Button(action: {
+                                
+                            }) {
+                                Image(systemName: "shippingbox.fill")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(width: 80, height: 80)
+                                    .foregroundColor(.brown)
+                            }
                         }
                     }
                 }
                 .padding()
                 .background(Color.cyan.opacity(0.3))
                 .cornerRadius(20)
-                .padding(.horizontal)
+                .padding(.horizontal, 40)
 
-                Spacer().frame(height: 30)
+                Spacer().frame(height: 60)
 
                 // Buttons
                 VStack(spacing: 12) {
