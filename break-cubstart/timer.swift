@@ -100,6 +100,7 @@ struct NewTimerView: View {
                 NavigationLink(destination: puzzleUIView(), isActive: $navigate) {
                     EmptyView()
                 }
+                .padding()
                 // Reset button and confirmation
                 
                 VStack {
@@ -172,20 +173,6 @@ struct NewTimerView: View {
             }
             .padding()
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        // Home button action
-                        print("Home button tapped")
-                    }) {
-                        HStack {
-                            Image(systemName: "house.fill")
-                            Text("Home")
-                        }
-                        .foregroundColor(.blue)
-                    }
-                }
-            }
             .onReceive(timer) { _ in
                 if isActive && timeRemaining > 0 {
                     timeRemaining -= 1
