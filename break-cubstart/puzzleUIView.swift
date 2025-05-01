@@ -124,7 +124,7 @@ struct puzzleUIView: View {
                                 .frame(minWidth: 120)
                         }
                         .fullScreenCover(isPresented: $navigate) {
-                            ContentView()
+                            PrizesView()
                         }
 //                        NavigationLink(destination: ContentView(), isActive: $navigate) {
 //                            EmptyView()

@@ -15,6 +15,7 @@ struct NewTimerView: View {
     @State var showResetConfirmation = false
     @State var showTimeSelection = false
     @State var navigate = false;
+    @State private var showPrizeView = false
     
     var totalTime: Int {
         Int(selectedMinutes) * 60
@@ -100,6 +101,9 @@ struct NewTimerView: View {
                 NavigationLink(destination: puzzleUIView(), isActive: $navigate) {
                     EmptyView()
                 }
+                NavigationLink(destination: PrizesView(), isActive: $showPrizeView) {
+                    EmptyView()
+                }
                 .padding()
                 // Reset button and confirmation
                 
@@ -178,6 +182,7 @@ struct NewTimerView: View {
                     timeRemaining -= 1
                 } else if timeRemaining == 0 {
                     isActive = false
+                    showPrizeView = true
                 }
             }
             .onAppear {
@@ -185,6 +190,7 @@ struct NewTimerView: View {
                 isActive = true
             }
             .animation(.easeInOut, value: showTimeSelection)
+
         }
     }
     
