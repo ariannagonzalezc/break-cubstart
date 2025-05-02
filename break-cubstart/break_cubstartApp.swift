@@ -11,7 +11,7 @@ import SwiftUI
 struct break_cubstartApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            PrizesView()
         }
     }
 }

@@ -1,6 +1,10 @@
 import SwiftUI
 
+<<<<<<< HEAD
 struct home: View {
+=======
+struct HomeView: View {
+>>>>>>> ab7bb0381c07b2160db44ef3678e68b65709cd5e
     @State private var isPressed = false
 
     var body: some View {
@@ -53,5 +57,9 @@ struct home: View {
     }
 }
 #Preview {
+<<<<<<< HEAD
     home()
+=======
+    HomeView()
+>>>>>>> ab7bb0381c07b2160db44ef3678e68b65709cd5e
 }
