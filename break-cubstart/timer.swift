@@ -101,12 +101,12 @@ struct NewTimerView: View {
                 NavigationLink(destination: puzzleUIView(), isActive: $navigate) {
                     EmptyView()
                 }
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
                 NavigationLink(destination: PrizesView(), isActive: $showPrizeView) {
                     EmptyView()
                 }
->>>>>>> ab7bb0381c07b2160db44ef3678e68b65709cd5e
+//>>>>>>> ab7bb0381c07b2160db44ef3678e68b65709cd5e
                 .padding()
                 // Reset button and confirmation
                 

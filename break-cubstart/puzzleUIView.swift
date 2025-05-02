@@ -42,6 +42,7 @@ struct puzzleUIView: View {
         )
     ]
     
+//    @StateObject var timer = timer()
     @State private var currentQuestionIndex = Int.random(in: 0..<3)
     @State private var userAnswer = ""
     @State private var feedback = ""
@@ -49,6 +50,7 @@ struct puzzleUIView: View {
     @State private var showNewQuestionButton = false
     @State private var isShowingFullScreenCover = true
     @State var navigate = false
+    @State var timeRemaining = 24 * 60 
 
     
     var body: some View {
@@ -124,7 +126,7 @@ struct puzzleUIView: View {
                                 .frame(minWidth: 120)
                         }
                         .fullScreenCover(isPresented: $navigate) {
-                            PrizesView()
+                            NewTimerView(timeRemaining: timeRemaining)
                         }
 //                        NavigationLink(destination: ContentView(), isActive: $navigate) {
 //                            EmptyView()
