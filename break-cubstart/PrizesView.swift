@@ -12,6 +12,7 @@ struct PrizesView: View {
     @State private var goToNewTimer = false
     @State private var selectedBox: Int? = nil
     @State private var goToHome = false
+    @State private var goToNewCollection = false
     let image = Image("smiski")
 
     var body: some View {
@@ -67,13 +68,18 @@ struct PrizesView: View {
 
     private var buttonSection: some View {
         VStack(spacing: 12) {
-            Button(action: {}) {
+            Button(action: {
+                goToNewCollection = true
+            }) {
                 Text("View Collection")
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.mint)
                     .foregroundColor(.white)
                     .cornerRadius(20)
+            }
+            NavigationLink(destination: CollectionScreen(), isActive: $goToNewCollection) {
+                EmptyView()
             }
 
             Button(action: {
@@ -145,6 +151,11 @@ struct NewTimerScreen: View {
     }
 }
 
+struct CollectionScreen: View {
+    var body: some View {
+        CollectionView()
+    }
+}
 
 
 struct ContentViewPreview: PreviewProvider {
