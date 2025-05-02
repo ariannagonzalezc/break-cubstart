@@ -16,12 +16,46 @@ struct NewTimerView: View {
     @State var showTimeSelection = false
     @State var navigate = false;
     @State private var showPrizeView = false
+    @Environment (\.scenePhase) var ScenePhase
+    @State private var appState: String = "Active"
+    
+    
+    
     
     var totalTime: Int {
         Int(selectedMinutes) * 60
     }
     
     var body: some View {
+        VStack {
+            Text("App State: \(appState)")
+                .onChange(of: ScenePhase) { newPhase in
+                    switch newPhase {
+                    case .active:
+                        appState = "active"
+                        navigate = true
+                        
+                    case .inactive:
+                        appState = "Inactive"
+                        NavigationLink(destination: puzzleUIView(timeRemaining: TimeInterval(timeRemaining)), isActive: $navigate) {
+                            EmptyView()
+                            
+                        }
+
+                    case .background:
+                        appState = "Background"
+                        
+                    }
+                }
+        }
+        if (navigate) {
+            NavigationLink(destination: puzzleUIView(timeRemaining: TimeInterval(timeRemaining)), isActive: $navigate) {
+                EmptyView()
+                
+            }
+        }
+    
+            
         NavigationView {
             VStack {
                 // Time selection controls
@@ -97,18 +131,27 @@ struct NewTimerView: View {
                                .background(Color.blue)
                                .cornerRadius(10)
                            }
-
-                NavigationLink(destination: puzzleUIView(), isActive: $navigate) {
+                NavigationLink(destination: puzzleUIView(timeRemaining: TimeInterval(timeRemaining)), isActive: $navigate) {
                     EmptyView()
+                    
                 }
+                .onDisappear {
+
+                
+                }
+//                .onAppear {
+//                    updateCountdown()
+//                }
 //<<<<<<< HEAD
 //=======
                 NavigationLink(destination: PrizesView(), isActive: $showPrizeView) {
                     EmptyView()
+                    
                 }
 //>>>>>>> ab7bb0381c07b2160db44ef3678e68b65709cd5e
                 .padding()
                 // Reset button and confirmation
+                
                 
                 VStack {
                     if showResetConfirmation {
@@ -204,7 +247,8 @@ struct NewTimerView: View {
     }
     
     func breakAction() {
-        isActive.toggle()
+//        isActive.toggle()
+        stopTimer()
     }
     
     func resetTimer() {
@@ -215,6 +259,16 @@ struct NewTimerView: View {
         timeRemaining = totalTime
         isActive = false
     }
+//    func startTimer() {
+//        stopTimer()
+//        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+//            if isActive && timeRemaining > 0 {
+//                timeRemaining -= 1
+//            } else {
+//                stopTimer()
+//            }
+//        }
+//    }
 }
 
 struct NewTimerView_Previews: PreviewProvider {

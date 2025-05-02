@@ -50,10 +50,31 @@ struct puzzleUIView: View {
     @State private var showNewQuestionButton = false
     @State private var isShowingFullScreenCover = true
     @State var navigate = false
-    @State var timeRemaining = 24 * 60 
+    @State var timeRemaining : TimeInterval
+    
+//    @Environment (\.scenePhase) var ScenePhase
+//    @State private var appState: String = "Active"
+
 
     
     var body: some View {
+//        Text("App State: \(appState)")
+//        .onChange(of: ScenePhase) { newPhase in
+//            switch newPhase {
+//            case .active:
+//                appState = "active"
+//                self.isShowingFullScreenCover =
+//            case .inactive:
+//                appState = "Inactive"
+//            case .background:
+//                appState = "Background"
+//                
+//            default:
+//                break
+//            }
+//        }
+        
+        
         VStack(spacing: 20) {
             // Main code display
             Group {
@@ -126,7 +147,7 @@ struct puzzleUIView: View {
                                 .frame(minWidth: 120)
                         }
                         .fullScreenCover(isPresented: $navigate) {
-                            NewTimerView(timeRemaining: timeRemaining)
+                            NewTimerView(timeRemaining: Int(timeRemaining))
                         }
 //                        NavigationLink(destination: ContentView(), isActive: $navigate) {
 //                            EmptyView()
@@ -167,6 +188,6 @@ struct puzzleUIView: View {
 
 struct puzzleUIView_Previews: PreviewProvider {
     static var previews: some View {
-        puzzleUIView()
+        puzzleUIView(timeRemaining: TimeInterval(0))
     }
 }
