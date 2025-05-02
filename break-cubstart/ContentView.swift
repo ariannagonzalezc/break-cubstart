@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var goToNewTimer = false
+    @State private var goToCollection = false
 
     var body: some View {
         NavigationView {
@@ -64,6 +65,7 @@ struct ContentView: View {
 
                     VStack(spacing: 12) {
                         Button(action: {
+                            goToCollection = true
                         }) {
                             Text("View Collection")
                                 .frame(maxWidth: .infinity)
@@ -83,6 +85,10 @@ struct ContentView: View {
                                 .foregroundColor(.white)
                                 .cornerRadius(20)
                         }
+                        
+                        NavigationLink(destination: CollectionView(), isActive: $goToCollection) {
+                               EmptyView()
+                           }
 
                         NavigationLink(destination: NewTimerView(), isActive: $goToNewTimer) {
                             EmptyView()
